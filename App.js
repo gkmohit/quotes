@@ -1,6 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, Button, Vibration } from 'react-native';
 import axios from 'axios';
+import { 
+  StyleSheet, 
+  Text, 
+  TouchableOpacity, 
+  Button, 
+  Vibration,
+  ActivityIndicator
+} from 'react-native';
 
 
 export default class App extends React.Component {
@@ -8,21 +15,24 @@ export default class App extends React.Component {
   constructor(props) { 
     super(props)
     this.state = {
-      quote : {}
+      quote : {},
+      showAnimation : true
     }
     this.getQuote = this.getQuote.bind(this);
   }
 
   componentDidMount() { 
-    this.getQuote;
+    this.getQuote();
   }
 
   render() {
 
+    const quote = this.state.quote.body;
+    const showAnimation = this.state.showAnimation;
     const quoteTextStyle = {
       color: "#000000",
       fontSize: 35,
-      textAlign: "center"
+      textAlign: "center",
     };
 
     const authorTextStyle = {
@@ -33,37 +43,40 @@ export default class App extends React.Component {
 
     return (
       <TouchableOpacity style={styles.container} onPress={this.getQuote}>
-        <Text
+        <ActivityIndicator 
+          size="large" 
+          color="#0000ff" 
+          animating={this.state.showAnimation}
+          hideWhenStopped="true"/>
+        { !showAnimation && <Text
          accessibilityLabel={this.state.quote.body}
          style= {quoteTextStyle}
         >
-          "{this.state.quote.body}"
-        </Text>
-        <Text
+          "{quote}"
+        </Text>}
+        { !showAnimation && <Text
           accessibilityLabel={this.state.quote.body}
           style= {authorTextStyle}
         >
           - {this.state.quote.author}
-        </Text>
-
-        <Button
-          onPress={this.getQuote}
-          title="Get new Quote"
-          color="#4CAF50"
-          accessibilityLabel="Get new Quote"
-        ></Button>
+        </Text>}
       </TouchableOpacity>
     );
   }
 
   
   getQuote = () => {
+
+    this.setState({
+      showAnimation : true
+    });
     axios({
       method:'get',
       url:'https://favqs.com/api/qotd',
     }).then( (response) => {
         this.setState({
-          quote : response.data.quote 
+          quote : response.data.quote ,
+          showAnimation : false
         });
       }).catch( (error) => {
         console.log(error);
