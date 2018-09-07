@@ -1,5 +1,21 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "ios": {
+      "supportsTablet": true,
+      "buildNumber": "1.1.3",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses camera to scan Bar Codes on product search."
+      },
+      "bundleIdentifier": "com.innovativecsportal.www"
+    },
+    "android": {
+      "package": "com.innovativecsportal.www",
+      "versionCode": 3,
+      "permissions": [
+        "VIBRATIONS"
+      ]
+    }
   }
+  
 }

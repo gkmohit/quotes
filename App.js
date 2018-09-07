@@ -8,6 +8,7 @@ import {
   Vibration,
   ActivityIndicator
 } from 'react-native';
+import Quote from './components/Quote.js'
 
 
 export default class App extends React.Component {
@@ -60,13 +61,13 @@ export default class App extends React.Component {
         >
           - {this.state.quote.author}
         </Text>}
+        <Quote />
       </TouchableOpacity>
     );
   }
 
   
   getQuote = () => {
-
     this.setState({
       showAnimation : true
     });
