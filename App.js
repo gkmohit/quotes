@@ -28,19 +28,7 @@ export default class App extends React.Component {
 
   render() {
 
-    const quote = this.state.quote.body;
-    const showAnimation = this.state.showAnimation;
-    const quoteTextStyle = {
-      color: "#000000",
-      fontSize: 35,
-      textAlign: "center",
-    };
-
-    const authorTextStyle = {
-      color: "#000000",
-      fontSize: 25,
-      textAlign: "left"
-    }
+    
 
     return (
       <TouchableOpacity style={styles.container} onPress={this.getQuote}>
@@ -49,19 +37,11 @@ export default class App extends React.Component {
           color="#0000ff" 
           animating={this.state.showAnimation}
           hideWhenStopped="true"/>
-        { !showAnimation && <Text
-         accessibilityLabel={this.state.quote.body}
-         style= {quoteTextStyle}
-        >
-          "{quote}"
-        </Text>}
-        { !showAnimation && <Text
-          accessibilityLabel={this.state.quote.body}
-          style= {authorTextStyle}
-        >
-          - {this.state.quote.author}
-        </Text>}
-        <Quote />
+        <Quote 
+          quote={this.state.quote.body}
+          author={this.state.quote.author}
+          showAnimation={this.state.showAnimation}
+        />
       </TouchableOpacity>
     );
   }
