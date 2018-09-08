@@ -8,7 +8,8 @@ import {
   Vibration,
   ActivityIndicator
 } from 'react-native';
-import Quote from './components/Quote.js'
+import Quote from './components/Quote.js';
+import Joke from './components/Joke.js'
 
 
 export default class App extends React.Component {
@@ -17,13 +18,14 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       quote : {},
-      showAnimation : true
+      showAnimation : true,
+      joke: {}
     }
     this.getQuote = this.getQuote.bind(this);
   }
 
   componentDidMount() { 
-    this.getQuote();
+    this.showComponent();
   }
 
   render() {
@@ -31,16 +33,18 @@ export default class App extends React.Component {
     
 
     return (
-      <TouchableOpacity style={styles.container} onPress={this.getQuote}>
-        <Quote 
-          quote={this.state.quote.body}
-          author={this.state.quote.author}
+      <TouchableOpacity style={styles.container} onPress={this.showComponent}>
+        <Joke 
+          joke={this.state.joke}
           showAnimation={this.state.showAnimation}
         />
       </TouchableOpacity>
     );
   }
 
+  showComponent = () => {
+    this.getDadJoke();
+  }
   
   getQuote = () => {
     this.setState({
@@ -58,7 +62,30 @@ export default class App extends React.Component {
         console.log(error);
       });
   };
+
+  getDadJoke = () => {
+    this.setState({
+      showAnimation : true
+    });
+    axios({
+      method:'get',
+      url:'https://icanhazdadjoke.com/',
+      headers: {
+        'Accept': 'application/json'
+      },
+    }).then( (response) => {
+        this.setState({
+          joke: response.data.joke,
+          showAnimation: false,
+        });
+        console.log(this.state.joke);
+      }).catch( (error) => {
+        console.log(error);
+      });
+  };
+
 }
+
 
 const styles = StyleSheet.create({
   container: {

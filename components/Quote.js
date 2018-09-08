@@ -51,9 +51,9 @@ export default class Quote extends React.Component {
 }
 
 Quote.prop = {
-    quote : PropTypes.string ,
-    author : PropTypes.string, 
-    showAnimation : PropTypes.boolean
+    quote : PropTypes.string.isRequired ,
+    author : PropTypes.string.isRequired , 
+    showAnimation : PropTypes.boolean 
 }
 
 const styles = StyleSheet.create({
@@ -65,3 +65,9 @@ const styles = StyleSheet.create({
       padding: 5
     },
   });
+
+//   <Quote 
+//           quote={this.state.quote.body}
+//           author={this.state.quote.author}
+//           showAnimation={this.state.showAnimation}
+//         />
