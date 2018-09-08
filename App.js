@@ -32,11 +32,6 @@ export default class App extends React.Component {
 
     return (
       <TouchableOpacity style={styles.container} onPress={this.getQuote}>
-        <ActivityIndicator 
-          size="large" 
-          color="#0000ff" 
-          animating={this.state.showAnimation}
-          hideWhenStopped="true"/>
         <Quote 
           quote={this.state.quote.body}
           author={this.state.quote.author}

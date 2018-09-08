@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { 
   StyleSheet, 
   Text,
-  View
+  View,
+  ActivityIndicator
 } from 'react-native';
 
 export default class Quote extends React.Component {
@@ -29,18 +30,21 @@ export default class Quote extends React.Component {
         }
         return (
             <View style={styles.contaier}>
-                <Text
-                accessibilityLabel={quote}
-                style= {quoteTextStyle}
-                >
-                "{quote}"
-                </Text> 
-                <Text
-                accessibilityLabel={author}
-                style= {authorTextStyle}
-                >
-                - {author}
-                </Text>
+                <ActivityIndicator 
+                    size="large" 
+                    color="#0000ff" 
+                    animating={showAnimation}
+                    hideWhenStopped="true"/>
+                { !showAnimation && <Text
+                    accessibilityLabel={quote}
+                    style= {quoteTextStyle} >
+                    "{quote}"
+                </Text> }
+                { !showAnimation && <Text
+                    accessibilityLabel={author}
+                    style= {authorTextStyle} >
+                    - {author}
+                </Text>}
             </View>
         )
     }
