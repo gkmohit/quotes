@@ -12,16 +12,12 @@ export default class Joke extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            
-        }
     }
-    componentDidMount(){
-        this.getDadJoke();
-    }
+    
     render() { 
         this.getDadJoke;
-        const joke = this.prop.joke;
+        console.log(this.props);
+        const joke = this.props.joke.joke;
         const showAnimation = this.props.showAnimation;
         const jokeTextStyle = {
             color: "#000000",
@@ -44,26 +40,7 @@ export default class Joke extends React.Component {
         )
     }
 
-    getDadJoke = () => {
-        this.props.setShowAnimation(true);
-        console.log("Get Dad joke")
-        this.setState({});
-        axios({
-          method:'get',
-          url:'https://icanhazdadjoke.com/',
-          headers: {
-            'Accept': 'application/json'
-          },
-        }).then( (response) => {
-            this.setState({
-                joke: response.data.joke,
-            });
-            this.props.setShowAnimation(false);
-          }).catch( (error) => {
-            console.log(error);
-            this.props.setShowAnimation(false);
-          });
-      };
+
     
 }
 

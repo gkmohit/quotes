@@ -12,8 +12,6 @@ export default class Quote extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        }
     }
 
     componentWillReceiveProps(){

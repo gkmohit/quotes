@@ -27,12 +27,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    // const joke =  <Joke setShowAnimation={this.setShowAnimation} joke={this.state.joke}/>
+    const joke =  <Joke setShowAnimation={this.setShowAnimation} joke={this.state.joke}/>
     const quote = <Quote setShowAnimation={this.setShowAnimation} quote={this.state.quote}/>
     this.setComponent;
     let displayItem;
     if( this.state.isJoke){
-      // displayItem = joke;
+      displayItem = joke;
     } else if( this.state.isQuote){
       displayItem = quote;
     }
@@ -70,6 +70,7 @@ export default class App extends React.Component {
         isJoke: false
       });
     } else {
+      this.getDadJoke();
       this.setState({
         isQuote: false,
         isJoke: true
@@ -95,7 +96,27 @@ export default class App extends React.Component {
         console.log(error);
     });
   };
+
+  getDadJoke = () => {
+    axios({
+      method:'get',
+      url:'https://icanhazdadjoke.com/',
+      headers: {
+        'Accept': 'application/json'
+      },
+    }).then( (response) => {
+        const joke = {
+            joke: response.data.joke,
+        }
+        this.setState({
+            joke
+        });
+      }).catch( (error) => {
+        console.log(error);
+      });
+  };
 }
+
 
 
 const styles = StyleSheet.create({
