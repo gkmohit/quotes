@@ -3,7 +3,8 @@ import axios from 'axios';
 import { 
   StyleSheet, 
   TouchableOpacity,
-  Text
+  Text, 
+  ActivityIndicator
  } from 'react-native';
 import Quote from './components/Quote.js';
 import Joke from './components/Joke.js'
@@ -31,6 +32,7 @@ export default class App extends React.Component {
     const joke =  <Joke joke={this.state.joke}/>
     const quote = <Quote quote={this.state.quote}/>
     const error = <Error />
+    const showAnimation = this.state.showAnimation;
     let displayItem;
     if( this.state.isJoke){
       displayItem = joke;
@@ -44,9 +46,9 @@ export default class App extends React.Component {
       <ActivityIndicator 
         size="large" 
         color="#0000ff" 
-        animating={this.state.showAnimation}
+        animating={showAnimation}
         hideWhenStopped="true"/>
-        {displayItem}    
+        {!showAnimation && displayItem}    
       </TouchableOpacity>
     )
   }
