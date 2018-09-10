@@ -16,9 +16,9 @@ export default class Joke extends React.Component {
     
     render() { 
         this.getDadJoke;
-        console.log(this.props);
         const joke = this.props.joke.joke;
         const showAnimation = this.props.showAnimation;
+        console.log(showAnimation);
         const jokeTextStyle = {
             color: "#000000",
             fontSize: 35,
@@ -29,13 +29,13 @@ export default class Joke extends React.Component {
                 <ActivityIndicator 
                     size="large" 
                     color="#0000ff" 
-                    animating={false}
+                    animating={showAnimation}
                     hideWhenStopped="true"/>
-                { !showAnimation && <Text
+                <Text
                     accessibilityLabel={joke}
                     style= {jokeTextStyle} >
                     {joke}
-                </Text> }
+                </Text>
             </View>
         )
     }
@@ -45,7 +45,7 @@ export default class Joke extends React.Component {
 }
 
 Joke.prop = {
-    setShowAnimation : PropTypes.func
+    showAnimation : PropTypes.func
 }
 
 const styles = StyleSheet.create({

@@ -16,6 +16,7 @@ export default class App extends React.Component {
       showAnimation: true,
       isJoke: false,
       isQuote: false,
+      isError: false,
       joke:{},
       quote:{},
     }
@@ -27,14 +28,17 @@ export default class App extends React.Component {
   }
 
   render() {
-    const joke =  <Joke setShowAnimation={this.setShowAnimation} joke={this.state.joke}/>
-    const quote = <Quote setShowAnimation={this.setShowAnimation} quote={this.state.quote}/>
-    this.setComponent;
+    console.log(this.state.showAnimation);
+    const joke =  <Joke showAnimation={this.showAnimation} joke={this.state.joke}/>
+    const quote = <Quote showAnimation={this.showAnimation} quote={this.state.quote}/>
+    const error = <Error />
     let displayItem;
     if( this.state.isJoke){
       displayItem = joke;
     } else if( this.state.isQuote){
       displayItem = quote;
+    } else if( this.state.isError){
+      displayItem = error;
     }
     return(
       <TouchableOpacity style={styles.container} onPress={this.setComponent}>
@@ -61,7 +65,6 @@ export default class App extends React.Component {
     const min = 1;
     const max = 100;
     const rand = min + Math.floor(Math.random() * (max - min));
-    console.log(rand);
     
     if( rand % 2 === 0){
       this.getQuote();
@@ -80,7 +83,7 @@ export default class App extends React.Component {
 
   getQuote = () => {
     
-    console.log("Get Quote")
+    this.setShowAnimation(true);
     axios({
         method:'get',
         url:'https://favqs.com/api/qotd',
@@ -92,12 +95,19 @@ export default class App extends React.Component {
       this.setState({
          quote 
       });
+      this.setShowAnimation(false);
     }).catch( (error) => {
-        console.log(error);
+        this.setState({
+          isError: true, 
+          isQuote: false,
+          isJoke: false,
+        })
+        this.setShowAnimation(false);
     });
   };
 
   getDadJoke = () => {
+    this.setShowAnimation(true);
     axios({
       method:'get',
       url:'https://icanhazdadjoke.com/',
@@ -111,8 +121,14 @@ export default class App extends React.Component {
         this.setState({
             joke
         });
+        this.setShowAnimation(false);
       }).catch( (error) => {
-        console.log(error);
+        this.setState({
+          isError: true, 
+          isQuote: false,
+          isJoke: false,
+        })
+        this.setShowAnimation(false);
       });
   };
 }

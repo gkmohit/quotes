@@ -23,7 +23,6 @@ export default class Quote extends React.Component {
         const quote = this.props.quote.quote;
         const author = this.props.quote.author;
         const showAnimation = this.props.showAnimation;
-        console.log(quote);
         const quoteTextStyle = {
             color: "#000000",
             fontSize: 35,
@@ -41,18 +40,18 @@ export default class Quote extends React.Component {
                 <ActivityIndicator 
                     size="large" 
                     color="#0000ff" 
-                    animating={false}
+                    animating={showAnimation}
                     hideWhenStopped="true"/>
-                { !showAnimation && <Text
+                <Text
                     accessibilityLabel={quote}
                     style= {quoteTextStyle} >
                     "{quote}"
-                </Text> }
-                { !showAnimation && <Text
+                </Text>
+                <Text
                     accessibilityLabel={author}
                     style= {authorTextStyle} >
                     - {author}
-                </Text>}
+                </Text>
             </View>
         )
     }
