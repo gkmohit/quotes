@@ -12,22 +12,28 @@ export default class Joke extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            
+        }
+    }
+    componentDidMount(){
+        this.getDadJoke();
     }
     render() { 
-        const joke = this.props.joke;
+        const joke = this.state.joke;
         const showAnimation = this.props.showAnimation;
         const jokeTextStyle = {
             color: "#000000",
             fontSize: 35,
             textAlign: "center",
         };
-        console.log(joke);
+        console.log("Joke : " + joke);
         return (
             <View style={styles.contaier}>
                 <ActivityIndicator 
                     size="large" 
                     color="#0000ff" 
-                    animating={showAnimation}
+                    animating={false}
                     hideWhenStopped="true"/>
                 { !showAnimation && <Text
                     accessibilityLabel={joke}
@@ -37,11 +43,32 @@ export default class Joke extends React.Component {
             </View>
         )
     }
+
+    getDadJoke = () => {
+        this.props.setShowAnimation(true);
+        axios({
+          method:'get',
+          url:'https://icanhazdadjoke.com/',
+          headers: {
+            'Accept': 'application/json'
+          },
+        }).then( (response) => {
+          console.log("State updated with Joke");
+            this.setState({
+                joke: response.data.joke,
+            });
+            console.log(response);
+            this.props.setShowAnimation(false);
+          }).catch( (error) => {
+            console.log(error);
+            this.props.setShowAnimation(false);
+          });
+      };
+    
 }
 
 Joke.prop = {
-    joke : PropTypes.string ,
-    showAnimation : PropTypes.boolean
+    setShowAnimation : PropTypes.func
 }
 
 const styles = StyleSheet.create({
@@ -53,8 +80,3 @@ const styles = StyleSheet.create({
       padding: 5
     },
   });
-
-//   <Joke 
-//           joke={this.state.joke}
-//           showAnimation={this.state.showAnimation}
-//         />

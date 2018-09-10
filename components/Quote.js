@@ -12,11 +12,18 @@ export default class Quote extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+
+        }
+    }
+
+    componentDidMount(){
+        this.getQuote();
     }
     render() { 
-        const quote = this.props.quote;
+        const quote = this.state.quote;
+        const author = this.state.author;
         const showAnimation = this.props.showAnimation;
-        const author = this.props.author;
         const quoteTextStyle = {
             color: "#000000",
             fontSize: 35,
@@ -33,7 +40,7 @@ export default class Quote extends React.Component {
                 <ActivityIndicator 
                     size="large" 
                     color="#0000ff" 
-                    animating={showAnimation}
+                    animating={false}
                     hideWhenStopped="true"/>
                 { !showAnimation && <Text
                     accessibilityLabel={quote}
@@ -48,12 +55,29 @@ export default class Quote extends React.Component {
             </View>
         )
     }
+
+    getQuote = () => {
+        this.props.setShowAnimation(true);
+        axios({
+            method:'get',
+            url:'https://favqs.com/api/qotd',
+        }).then( (response) => {
+            console.log("State updated with Quote");
+            console.log(response)
+            this.setState({
+                quote: response.data.quote.body,
+                author: response.data.quote.author,
+            });
+
+            console.log(this.state.quote);
+        }).catch( (error) => {
+        console.log(error);
+        });
+    };
 }
 
 Quote.prop = {
-    quote : PropTypes.string.isRequired ,
-    author : PropTypes.string.isRequired , 
-    showAnimation : PropTypes.boolean 
+    setShowAnimation : PropTypes.func
 }
 
 const styles = StyleSheet.create({
