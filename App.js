@@ -15,7 +15,9 @@ export default class App extends React.Component {
     this.state = {
       showAnimation: true,
       isJoke: false,
-      isQuote: false
+      isQuote: false,
+      joke:{},
+      quote:{},
     }
     
   }
@@ -25,12 +27,12 @@ export default class App extends React.Component {
   }
 
   render() {
-    const joke =      <Joke setShowAnimation={this.setShowAnimation} />
-    const quote = <Quote setShowAnimation={this.setShowAnimation} />
+    // const joke =  <Joke setShowAnimation={this.setShowAnimation} joke={this.state.joke}/>
+    const quote = <Quote setShowAnimation={this.setShowAnimation} quote={this.state.quote}/>
     this.setComponent;
     let displayItem;
     if( this.state.isJoke){
-      displayItem = joke;
+      // displayItem = joke;
     } else if( this.state.isQuote){
       displayItem = quote;
     }
@@ -55,13 +57,14 @@ export default class App extends React.Component {
     this.decider();
   }
 
-  //1. decide on joke or quote
   decider = () => {
     const min = 1;
     const max = 100;
     const rand = min + Math.floor(Math.random() * (max - min));
     console.log(rand);
+    
     if( rand % 2 === 0){
+      this.getQuote();
       this.setState({
         isQuote: true,
         isJoke: false
@@ -73,6 +76,25 @@ export default class App extends React.Component {
       });
     }
   }
+
+  getQuote = () => {
+    
+    console.log("Get Quote")
+    axios({
+        method:'get',
+        url:'https://favqs.com/api/qotd',
+    }).then( (response) => {
+      const quote = {
+        quote: response.data.quote.body,
+        author: response.data.quote.author,
+      }
+      this.setState({
+         quote 
+      });
+    }).catch( (error) => {
+        console.log(error);
+    });
+  };
 }
 
 

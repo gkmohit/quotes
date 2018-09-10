@@ -21,7 +21,7 @@ export default class Joke extends React.Component {
     }
     render() { 
         this.getDadJoke;
-        const joke = this.state.joke;
+        const joke = this.prop.joke;
         const showAnimation = this.props.showAnimation;
         const jokeTextStyle = {
             color: "#000000",
@@ -46,6 +46,8 @@ export default class Joke extends React.Component {
 
     getDadJoke = () => {
         this.props.setShowAnimation(true);
+        console.log("Get Dad joke")
+        this.setState({});
         axios({
           method:'get',
           url:'https://icanhazdadjoke.com/',

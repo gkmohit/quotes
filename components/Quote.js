@@ -16,14 +16,16 @@ export default class Quote extends React.Component {
         }
     }
 
-    componentDidMount(){
-        this.getQuote();
+    componentWillReceiveProps(){
+        this.setState({ })
     }
+
     render() { 
-        this.getQuote;
-        const quote = this.state.quote;
-        const author = this.state.author;
+        
+        const quote = this.props.quote.quote;
+        const author = this.props.quote.author;
         const showAnimation = this.props.showAnimation;
+        console.log(quote);
         const quoteTextStyle = {
             color: "#000000",
             fontSize: 35,
@@ -57,20 +59,7 @@ export default class Quote extends React.Component {
         )
     }
 
-    getQuote = () => {
-        this.props.setShowAnimation(true);
-        axios({
-            method:'get',
-            url:'https://favqs.com/api/qotd',
-        }).then( (response) => {
-            this.setState({
-                quote: response.data.quote.body,
-                author: response.data.quote.author,
-            });
-        }).catch( (error) => {
-            console.log(error);
-        });
-    };
+    
 }
 
 Quote.prop = {
