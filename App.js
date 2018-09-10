@@ -28,9 +28,8 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.showAnimation);
-    const joke =  <Joke showAnimation={this.showAnimation} joke={this.state.joke}/>
-    const quote = <Quote showAnimation={this.showAnimation} quote={this.state.quote}/>
+    const joke =  <Joke joke={this.state.joke}/>
+    const quote = <Quote quote={this.state.quote}/>
     const error = <Error />
     let displayItem;
     if( this.state.isJoke){
@@ -42,6 +41,11 @@ export default class App extends React.Component {
     }
     return(
       <TouchableOpacity style={styles.container} onPress={this.setComponent}>
+      <ActivityIndicator 
+        size="large" 
+        color="#0000ff" 
+        animating={this.state.showAnimation}
+        hideWhenStopped="true"/>
         {displayItem}    
       </TouchableOpacity>
     )

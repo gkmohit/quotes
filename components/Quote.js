@@ -22,7 +22,6 @@ export default class Quote extends React.Component {
         
         const quote = this.props.quote.quote;
         const author = this.props.quote.author;
-        const showAnimation = this.props.showAnimation;
         const quoteTextStyle = {
             color: "#000000",
             fontSize: 35,
@@ -37,11 +36,6 @@ export default class Quote extends React.Component {
         
         return (
             <View style={styles.contaier}>
-                <ActivityIndicator 
-                    size="large" 
-                    color="#0000ff" 
-                    animating={showAnimation}
-                    hideWhenStopped="true"/>
                 <Text
                     accessibilityLabel={quote}
                     style= {quoteTextStyle} >

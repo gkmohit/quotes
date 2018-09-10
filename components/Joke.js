@@ -17,8 +17,6 @@ export default class Joke extends React.Component {
     render() { 
         this.getDadJoke;
         const joke = this.props.joke.joke;
-        const showAnimation = this.props.showAnimation;
-        console.log(showAnimation);
         const jokeTextStyle = {
             color: "#000000",
             fontSize: 35,
@@ -26,11 +24,7 @@ export default class Joke extends React.Component {
         };
         return (
             <View style={styles.contaier}>
-                <ActivityIndicator 
-                    size="large" 
-                    color="#0000ff" 
-                    animating={showAnimation}
-                    hideWhenStopped="true"/>
+
                 <Text
                     accessibilityLabel={joke}
                     style= {jokeTextStyle} >
