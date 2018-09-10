@@ -13,7 +13,6 @@ export default class Quote extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
         }
     }
 
@@ -21,6 +20,7 @@ export default class Quote extends React.Component {
         this.getQuote();
     }
     render() { 
+        this.getQuote;
         const quote = this.state.quote;
         const author = this.state.author;
         const showAnimation = this.props.showAnimation;
@@ -35,6 +35,7 @@ export default class Quote extends React.Component {
             fontSize: 25,
             textAlign: "center"
         }
+        
         return (
             <View style={styles.contaier}>
                 <ActivityIndicator 
@@ -62,16 +63,12 @@ export default class Quote extends React.Component {
             method:'get',
             url:'https://favqs.com/api/qotd',
         }).then( (response) => {
-            console.log("State updated with Quote");
-            console.log(response)
             this.setState({
                 quote: response.data.quote.body,
                 author: response.data.quote.author,
             });
-
-            console.log(this.state.quote);
         }).catch( (error) => {
-        console.log(error);
+            console.log(error);
         });
     };
 }

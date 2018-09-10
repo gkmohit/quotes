@@ -20,49 +20,25 @@ export default class App extends React.Component {
     
   }
 
-  componentDidMount() { 
-    // this.setComponent();
+  componentDidMount(){
+    this.setComponent();
   }
 
   render() {
-    // return (
-    //     <TouchableOpacity style={styles.container} onPress={this.setComponent}>
-    //       <Joke 
-    //         setShowAnimation={this.setShowAnimation}
-    //       />
-    //     </TouchableOpacity>
-    // );
-    return (
+    const joke =      <Joke setShowAnimation={this.setShowAnimation} />
+    const quote = <Quote setShowAnimation={this.setShowAnimation} />
+    this.setComponent;
+    let displayItem;
+    if( this.state.isJoke){
+      displayItem = joke;
+    } else if( this.state.isQuote){
+      displayItem = quote;
+    }
+    return(
       <TouchableOpacity style={styles.container} onPress={this.setComponent}>
-          <Quote 
-          setShowAnimation={this.setShowAnimation}
-          />
-        </TouchableOpacity>
+        {displayItem}    
+      </TouchableOpacity>
     )
-
-    // if( this.state.joke.isJoke) {
-    //   return (
-    //     <TouchableOpacity style={styles.container} onPress={this.setComponent}>
-    //       <Joke 
-    //         joke={this.state.joke.body}
-    //         showAnimation={this.state.showAnimation}
-    //       />
-    //     </TouchableOpacity>
-    //   );
-    // } else {
-    //   return (
-    //     <TouchableOpacity style={styles.container} onPress={this.setComponent}>
-    //       <Quote 
-    //         quote={this.state.quote.body}
-    //         author={this.state.quote.author}
-    //         showAnimation={this.state.showAnimation}
-    //       />
-    //     </TouchableOpacity>
-    //   )
-    // }
-    //3. set state
-    //4. display component
-    
   }
 
   setShowAnimation = (showAnimationValue) => {
@@ -72,6 +48,10 @@ export default class App extends React.Component {
   }
 
   setComponent = () => {
+    this.setState({
+      isJoke: false,
+      isQuote: false
+    })
     this.decider();
   }
 
@@ -86,21 +66,13 @@ export default class App extends React.Component {
         isQuote: true,
         isJoke: false
       });
-      console.log("State :" + this.state);
     } else {
       this.setState({
         isQuote: false,
         isJoke: true
       });
-      console.log("State :" + this.state);
     }
   }
-
-  // showComponent = () => {
-    
-  //   // this.getDadJoke();
-  //   this.getQuote();
-  // }
 }
 
 

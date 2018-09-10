@@ -20,6 +20,7 @@ export default class Joke extends React.Component {
         this.getDadJoke();
     }
     render() { 
+        this.getDadJoke;
         const joke = this.state.joke;
         const showAnimation = this.props.showAnimation;
         const jokeTextStyle = {
@@ -27,7 +28,6 @@ export default class Joke extends React.Component {
             fontSize: 35,
             textAlign: "center",
         };
-        console.log("Joke : " + joke);
         return (
             <View style={styles.contaier}>
                 <ActivityIndicator 
@@ -53,11 +53,9 @@ export default class Joke extends React.Component {
             'Accept': 'application/json'
           },
         }).then( (response) => {
-          console.log("State updated with Joke");
             this.setState({
                 joke: response.data.joke,
             });
-            console.log(response);
             this.props.setShowAnimation(false);
           }).catch( (error) => {
             console.log(error);
