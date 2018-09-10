@@ -21,6 +21,7 @@ export default class Joke extends React.Component {
             fontSize: 35,
             textAlign: "center",
         };
+        console.log(joke);
         return (
             <View style={styles.contaier}>
                 <ActivityIndicator 
