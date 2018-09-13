@@ -7,10 +7,12 @@ import {
   ActivityIndicator
  } from 'react-native';
 import Quote from './components/Quote.js';
-import Joke from './components/Joke.js'
+import Joke from './components/Joke.js';
+import ImageScreen from './components/ImageScreen.js';
  
 export default class App extends React.Component {
 
+  
   constructor(props) { 
     super(props)
     this.state = {
@@ -20,6 +22,7 @@ export default class App extends React.Component {
       isError: false,
       joke:{},
       quote:{},
+      image:{},
     }
     
   }
@@ -32,6 +35,7 @@ export default class App extends React.Component {
     const joke =  <Joke joke={this.state.joke}/>
     const quote = <Quote quote={this.state.quote}/>
     const error = <Error />
+    const imageScreen = <ImageScreen image={this.state.image}/>
     const showAnimation = this.state.showAnimation;
     let displayItem;
     if( this.state.isJoke){
@@ -40,6 +44,8 @@ export default class App extends React.Component {
       displayItem = quote;
     } else if( this.state.isError){
       displayItem = error;
+    } else if( this.state.isImage){
+      displayItem = imageScreen;
     }
     return(
       <TouchableOpacity style={styles.container} onPress={this.setComponent}>
@@ -76,13 +82,25 @@ export default class App extends React.Component {
       this.getQuote();
       this.setState({
         isQuote: true,
-        isJoke: false
+        isJoke: false,
+        isImage:false,
+        isError:false
       });
-    } else {
+    } else if( rand % 3 === 0){
       this.getDadJoke();
       this.setState({
         isQuote: false,
-        isJoke: true
+        isJoke: true,
+        isImage:false,
+        isError:false
+      });
+    } else {
+      this.getImage();
+      this.setState({
+        isQuote: false,
+        isJoke: false,
+        isImage:true,
+        isError:false
       });
     }
   }
@@ -107,6 +125,7 @@ export default class App extends React.Component {
           isError: true, 
           isQuote: false,
           isJoke: false,
+          isImage:false,
         })
         this.setShowAnimation(false);
     });
@@ -133,10 +152,51 @@ export default class App extends React.Component {
           isError: true, 
           isQuote: false,
           isJoke: false,
+          isImage:false,
         })
         this.setShowAnimation(false);
       });
   };
+
+  getImage = () => {
+    const UNSPLASH_API_ID = '012eb241a70b56ae53f79665f1bcde203359b2bd4f884f1b427b3181bde15d67';
+    
+    axios({
+      method:'get',
+      url: 'https://api.unsplash.com/photos/random?client_id=012eb241a70b56ae53f79665f1bcde203359b2bd4f884f1b427b3181bde15d67',
+      headers: {
+        'Accept': 'application/json'
+      },
+    }).then( (response) => {
+      
+        const image = {
+          url : response.data.urls.regular,
+          user_name: response.data.user.name,
+          description: response.data.description,
+          height: response.data.height,
+          width: response.data.width,
+          setShowAnimation: this.setShowAnimation
+        }
+        this.setState({
+          image
+        });
+        this.setShowAnimation(false);
+      }).catch( (error) => {
+        this.setState({
+          isError: true, 
+          isQuote: false,
+          isJoke: false,
+          isImage:false,
+        })
+        this.setShowAnimation(false);
+      });
+    this.setState({
+      isError: false, 
+      isQuote: false,
+      isJoke: false,
+      isImage: true,
+    });
+  }
 }
 
 

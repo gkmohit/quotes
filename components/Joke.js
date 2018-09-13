@@ -14,8 +14,7 @@ export default class Joke extends React.Component {
         super(props);
     }
     
-    render() { 
-        this.getDadJoke;
+    render() { ;
         const joke = this.props.joke.joke;
         const jokeTextStyle = {
             color: "#000000",
