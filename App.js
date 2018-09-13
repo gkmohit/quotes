@@ -9,7 +9,7 @@ import {
 import Quote from './components/Quote.js';
 import Joke from './components/Joke.js';
 import ImageScreen from './components/ImageScreen.js';
- 
+import ErrorScreen from './components/ErrorScreen.js'
 export default class App extends React.Component {
 
   
@@ -34,8 +34,8 @@ export default class App extends React.Component {
   render() {
     const joke =  <Joke joke={this.state.joke}/>
     const quote = <Quote quote={this.state.quote}/>
-    const error = <Error />
     const imageScreen = <ImageScreen image={this.state.image}/>
+    const error = <ErrorScreen />
     const showAnimation = this.state.showAnimation;
     let displayItem;
     if( this.state.isJoke){
@@ -121,6 +121,7 @@ export default class App extends React.Component {
       });
       this.setShowAnimation(false);
     }).catch( (error) => {
+        console.log("getQuote error " + error);
         this.setState({
           isError: true, 
           isQuote: false,
@@ -148,6 +149,7 @@ export default class App extends React.Component {
         });
         this.setShowAnimation(false);
       }).catch( (error) => {
+        console.log("getDadJoke error " + error);
         this.setState({
           isError: true, 
           isQuote: false,
@@ -182,6 +184,7 @@ export default class App extends React.Component {
         });
         this.setShowAnimation(false);
       }).catch( (error) => {
+        console.log("getImage error " + error);
         this.setState({
           isError: true, 
           isQuote: false,

@@ -8,7 +8,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-export default class Error extends React.Component {
+export default class ErrorScreen extends React.Component {
 
     constructor(props) {
         super(props);
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
   });
-Error.propTypes = {
+  ErrorScreen.propTypes = {
     error : PropTypes.object,
 }
