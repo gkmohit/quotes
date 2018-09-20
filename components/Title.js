@@ -14,13 +14,15 @@ export default class Title extends React.Component {
     }
     render() { 
         const title = this.props.title;
+        const fontAwesomeIcon = this.props.fontAwesomeIcon;
         const titleTextStyle = {
             color: "#FFF",
             fontSize: 45,
             textAlign: "center",
+            padding: 1
         };
         const fontAwesomeStyle = { 
-            color: 'red' 
+            color: '#FFF' 
         };
         return (
             <View style={styles.contaier}>
@@ -29,7 +31,7 @@ export default class Title extends React.Component {
                     style= {titleTextStyle} >
                     {title}
                 </Text>
-                <FontAwesome name="calendar" size={25} style={fontAwesomeStyle} />
+                <FontAwesome name={fontAwesomeIcon} size={25} style={fontAwesomeStyle} />
             </View>
         )
     }
@@ -46,4 +48,5 @@ const styles = StyleSheet.create({
 
 Title.propTypes = {
     title : PropTypes.string,
+    fontAwesomeIcon: PropTypes.string,
 }

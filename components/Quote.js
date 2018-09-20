@@ -10,6 +10,7 @@ import {
 import Title from './Title';
 
 const QUOTE_TITLE = "Quote";
+const FONT_AWESOME_ICON = "terminal";
 export default class Quote extends React.Component {
     
     constructor(props) {
@@ -38,7 +39,7 @@ export default class Quote extends React.Component {
         
         return (
             <View style={styles.contaier}>
-                <Title title={QUOTE_TITLE} />
+                <Title title={QUOTE_TITLE} fontAwesomeIcon={FONT_AWESOME_ICON} />
                 <Text
                     accessibilityLabel={quote}
                     style= {quoteTextStyle} >
@@ -57,7 +58,9 @@ export default class Quote extends React.Component {
 }
 
 Quote.prop = {
-    setShowAnimation : PropTypes.func
+    setShowAnimation : PropTypes.func,
+    quote: PropTypes.string,
+    author: PropTypes.string
 }
 
 const styles = StyleSheet.create({

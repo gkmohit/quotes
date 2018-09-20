@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import Title from './Title';
 import PropTypes from 'prop-types';
 import { 
   StyleSheet, 
@@ -8,6 +8,8 @@ import {
   ActivityIndicator
 } from 'react-native';
 
+const JOKE_TITLE = "Joke";
+const FONT_AWESOME_ICON = "glass";
 export default class Joke extends React.Component {
 
     constructor(props) {
@@ -24,7 +26,7 @@ export default class Joke extends React.Component {
         };
         return (
             <View style={styles.contaier}>
-
+                <Title title={JOKE_TITLE} fontAwesomeIcon={FONT_AWESOME_ICON} />
                 <Text
                     accessibilityLabel={joke}
                     style= {jokeTextStyle} >
@@ -39,7 +41,8 @@ export default class Joke extends React.Component {
 }
 
 Joke.prop = {
-    showAnimation : PropTypes.func
+    showAnimation : PropTypes.func,
+    joke: PropTypes.string
 }
 
 const styles = StyleSheet.create({

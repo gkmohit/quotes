@@ -8,8 +8,11 @@ import {
   Text,
   Dimensions
 } from 'react-native';
+import Title from './Title';
 
 
+const IMAGE_TITLE = "Image";
+const FONT_AWESOME_ICON = "image";
 export default class ImageScreen extends React.Component {
 
     constructor(props) {
@@ -37,6 +40,7 @@ export default class ImageScreen extends React.Component {
         
         return (
             <View style={styles.contaier}>
+                <Title title={IMAGE_TITLE} fontAwesomeIcon={FONT_AWESOME_ICON} />
                 <Image
                     style={styles.image}
                     source={{uri: this.props.image.url}}
@@ -66,5 +70,8 @@ const styles = StyleSheet.create({
 
 
   ImageScreen.propTypes = {
+    url: PropTypes.string,
+    description: PropTypes.string,
+    userName: PropTypes.string,
     
 }
