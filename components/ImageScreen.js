@@ -5,8 +5,10 @@ import {
   StyleSheet, 
   View,
   Image,
-  Text
+  Text,
+  Dimensions
 } from 'react-native';
+
 
 export default class ImageScreen extends React.Component {
 
@@ -18,17 +20,18 @@ export default class ImageScreen extends React.Component {
         const url = "\'" + this.props.image.url + "\'";
         const description = this.props.image.description;
         const userName = this.props.image.user_name;
-        console.log(this.props.image.setShowAnimation);
         const setShowAnimation = this.props.image.setShowAnimation;
+        
+
         const descriptionTextStyle = {
-            color: "#000000",
-            fontSize: 30,
+            color: "#FFF",
+            fontSize: 25,
             textAlign: "center"
         }
 
         const userNameTextStyle = {
-            color: "#000000",
-            fontSize: 25,
+            color: "#FFF",
+            fontSize: 15,
             textAlign: "center"
         }
         
@@ -37,8 +40,6 @@ export default class ImageScreen extends React.Component {
                 <Image
                     style={styles.image}
                     source={{uri: this.props.image.url}}
-                    onLoadStart={() => setShowAnimation(true)}
-                    onLoadEnd={() => setShowAnimation(false)}
                 />
                 <Text
                     accessibilityLabel={description}
@@ -57,8 +58,8 @@ export default class ImageScreen extends React.Component {
 
 const styles = StyleSheet.create({
     image: {
-        width: 300,
-        height: 100,
+        width: Dimensions.get('window').width - 10,
+        height: 400,
         alignSelf: 'center',
     },
   });

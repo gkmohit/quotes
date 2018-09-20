@@ -1,32 +1,35 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
+import { FontAwesome } from '@expo/vector-icons';
 import { 
   StyleSheet, 
   Text,
   View,
-  ActivityIndicator
 } from 'react-native';
 
-export default class ErrorScreen extends React.Component {
+export default class Title extends React.Component {
 
     constructor(props) {
         super(props);
     }
     render() { 
-        const error = "Opps there was an error!";
-        const errorTextStyle = {
+        const title = this.props.title;
+        const titleTextStyle = {
             color: "#FFF",
-            fontSize: 35,
+            fontSize: 45,
             textAlign: "center",
+        };
+        const fontAwesomeStyle = { 
+            color: 'red' 
         };
         return (
             <View style={styles.contaier}>
                 <Text
-                    accessibilityLabel={error}
-                    style= {errorTextStyle} >
-                    {error}
+                    accessibilityLabel={title}
+                    style= {titleTextStyle} >
+                    {title}
                 </Text>
+                <FontAwesome name="calendar" size={25} style={fontAwesomeStyle} />
             </View>
         )
     }
@@ -40,6 +43,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
   });
-  ErrorScreen.propTypes = {
-    error : PropTypes.object,
+
+Title.propTypes = {
+    title : PropTypes.string,
 }

@@ -14,10 +14,11 @@ export default class Joke extends React.Component {
         super(props);
     }
     
-    render() { ;
+    render() { 
+        
         const joke = this.props.joke.joke;
         const jokeTextStyle = {
-            color: "#000000",
+            color: "#FFF",
             fontSize: 35,
             textAlign: "center",
         };

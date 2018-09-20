@@ -7,9 +7,11 @@ import {
   View,
   ActivityIndicator
 } from 'react-native';
+import Title from './Title';
 
+const QUOTE_TITLE = "Quote";
 export default class Quote extends React.Component {
-
+    
     constructor(props) {
         super(props);
     }
@@ -23,19 +25,20 @@ export default class Quote extends React.Component {
         const quote = this.props.quote.quote;
         const author = this.props.quote.author;
         const quoteTextStyle = {
-            color: "#000000",
+            color: "#FFF",
             fontSize: 35,
             textAlign: "center",
         };
 
         const authorTextStyle = {
-            color: "#000000",
+            color: "#FFF",
             fontSize: 25,
             textAlign: "center"
         }
         
         return (
             <View style={styles.contaier}>
+                <Title title={QUOTE_TITLE} />
                 <Text
                     accessibilityLabel={quote}
                     style= {quoteTextStyle} >
