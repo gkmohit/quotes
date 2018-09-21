@@ -115,6 +115,7 @@ export default class App extends React.Component {
       const quote = {
         quote: response.data.quote.body,
         author: response.data.quote.author,
+        source: "https://favqs.com"
       }
       this.setState({
          quote 
@@ -143,6 +144,7 @@ export default class App extends React.Component {
     }).then( (response) => {
         const joke = {
             joke: response.data.joke,
+            source: "https://icanhazdadjoke.com"
         }
         this.setState({
             joke
@@ -161,7 +163,6 @@ export default class App extends React.Component {
   };
 
   getImage = () => {
-    const UNSPLASH_API_ID = '012eb241a70b56ae53f79665f1bcde203359b2bd4f884f1b427b3181bde15d67';
     
     axios({
       method:'get',
@@ -177,6 +178,8 @@ export default class App extends React.Component {
           description: response.data.description,
           height: response.data.height,
           width: response.data.width,
+          profile_image: response.data.user.profile_image.small,
+          source: "https://www.unsplash.com",
           setShowAnimation: this.setShowAnimation
         }
         this.setState({
@@ -208,7 +211,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
-    
+    flexDirection: "column",
     alignItems: 'center',
     justifyContent: 'center',
   },

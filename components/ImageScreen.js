@@ -8,7 +8,9 @@ import {
   Text,
   Dimensions
 } from 'react-native';
+import { Avatar } from 'react-native-elements';
 import Title from './Title';
+import Source from './Source';
 
 
 const IMAGE_TITLE = "Image";
@@ -24,6 +26,8 @@ export default class ImageScreen extends React.Component {
         const description = this.props.image.description;
         const userName = this.props.image.user_name;
         const setShowAnimation = this.props.image.setShowAnimation;
+        const source = this.props.image.source;
+        const profileImage = this.props.image.profile_image;
         
 
         const descriptionTextStyle = {
@@ -55,6 +59,13 @@ export default class ImageScreen extends React.Component {
                     style= {userNameTextStyle} >
                     - {userName}
                 </Text>
+                <Avatar
+                    size="medium"
+                    rounded
+                    source={{uri: this.props.image.profile_image}}
+                    activeOpacity={0.7}   
+                />
+                <Source source={source} />
             </View>
         )
     }

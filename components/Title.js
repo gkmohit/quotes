@@ -19,7 +19,7 @@ export default class Title extends React.Component {
             color: "#FFF",
             fontSize: 45,
             textAlign: "center",
-            padding: 1
+            padding: 1,
         };
         const fontAwesomeStyle = { 
             color: '#FFF' 

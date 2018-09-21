@@ -72,9 +72,3 @@ const styles = StyleSheet.create({
       padding: 5
     },
   });
-
-//   <Quote 
-//           quote={this.state.quote.body}
-//           author={this.state.quote.author}
-//           showAnimation={this.state.showAnimation}
-//         />
