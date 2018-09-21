@@ -62,6 +62,7 @@ export default class ImageScreen extends React.Component {
                 <Avatar
                     size="medium"
                     rounded
+                    icon={{name: 'user'}}
                     source={{uri: this.props.image.profile_image}}
                     activeOpacity={0.7}   
                 />
