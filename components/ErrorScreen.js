@@ -21,7 +21,7 @@ export default class ErrorScreen extends React.Component {
             textAlign: "center",
         };
         return (
-            <View style={styles.contaier}>
+            <View style={styles.container}>
                 <Text
                     accessibilityLabel={error}
                     style= {errorTextStyle} >
@@ -35,7 +35,6 @@ export default class ErrorScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
     },

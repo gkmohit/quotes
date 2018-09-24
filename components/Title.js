@@ -25,22 +25,22 @@ export default class Title extends React.Component {
             color: '#FFF' 
         };
         return (
-            <View style={styles.contaier}>
+            <View style={styles.container}>
                 <Text
                     accessibilityLabel={title}
                     style= {titleTextStyle} >
                     {title}
                 </Text>
-                <FontAwesome name={fontAwesomeIcon} size={25} style={fontAwesomeStyle} />
+                
             </View>
         )
     }
+    // <FontAwesome name={fontAwesomeIcon} size={25} style={fontAwesomeStyle} />
 }
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
     },

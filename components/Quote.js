@@ -25,29 +25,23 @@ export default class Quote extends React.Component {
         
         const quote = this.props.quote.quote;
         const author = this.props.quote.author;
-        const quoteTextStyle = {
-            color: "#FFF",
-            fontSize: 35,
-            textAlign: "center",
-        };
+       
 
-        const authorTextStyle = {
-            color: "#FFF",
-            fontSize: 25,
-            textAlign: "center"
-        }
-        
+               
         return (
-            <View style={styles.contaier}>
-                <Title title={QUOTE_TITLE} fontAwesomeIcon={FONT_AWESOME_ICON} />
+            <View style={styles.container}>
+                <Title 
+                    title={QUOTE_TITLE} 
+                    fontAwesomeIcon={FONT_AWESOME_ICON} 
+                    style={styles.titleStyle}/>
                 <Text
                     accessibilityLabel={quote}
-                    style= {quoteTextStyle} >
+                    style= {styles.quoteTextStyle} >
                     "{quote}"
                 </Text>
                 <Text
                     accessibilityLabel={author}
-                    style= {authorTextStyle} >
+                    style= {styles.authorTextStyle} >
                     - {author}
                 </Text>
             </View>
@@ -66,9 +60,24 @@ Quote.prop = {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-around',
       padding: 5
     },
+    quoteTextStyle : {
+        flex: 1,
+        color: "#FFF",
+        fontSize: 35,
+        textAlign: "center",
+    },
+    authorTextStyle : {
+        flex: 1,
+        color: "#FFF",
+        fontSize: 25,
+        textAlign: "center",
+        justifyContent: "center"
+    },
+    titleStyle : {
+        flex: 1,
+    }
   });

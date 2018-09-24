@@ -178,7 +178,7 @@ export default class App extends React.Component {
           description: response.data.description,
           height: response.data.height,
           width: response.data.width,
-          profile_image: response.data.user.profile_image.small,
+          profile_image: response.data.user.profile_image.medium,
           source: "https://www.unsplash.com",
           setShowAnimation: this.setShowAnimation
         }

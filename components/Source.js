@@ -20,7 +20,7 @@ export default class Source extends React.Component {
             padding: 1,
         };
         return (
-            <View style={styles.contaier}>
+            <View style={styles.container}>
                 <Text
                     accessibilityLabel={source}
                     style= {sourceTextStyle} >
@@ -34,7 +34,6 @@ export default class Source extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
     },

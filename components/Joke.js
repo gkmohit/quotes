@@ -25,7 +25,7 @@ export default class Joke extends React.Component {
             textAlign: "center",
         };
         return (
-            <View style={styles.contaier}>
+            <View style={styles.container}>
                 <Title title={JOKE_TITLE} fontAwesomeIcon={FONT_AWESOME_ICON} />
                 <Text
                     accessibilityLabel={joke}
@@ -48,7 +48,6 @@ Joke.prop = {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
       padding: 5

@@ -8,9 +8,9 @@ import {
   Text,
   Dimensions
 } from 'react-native';
-import { Avatar } from 'react-native-elements';
 import Title from './Title';
 import Source from './Source';
+import ArtistInfo from './ArtistInfo';
 
 
 const IMAGE_TITLE = "Image";
@@ -23,48 +23,27 @@ export default class ImageScreen extends React.Component {
 
     render() { 
         const url = "\'" + this.props.image.url + "\'";
-        const description = this.props.image.description;
-        const userName = this.props.image.user_name;
-        const setShowAnimation = this.props.image.setShowAnimation;
         const source = this.props.image.source;
+        const userName = this.props.image.user_name;
+        const description = this.props.image.description;
         const profileImage = this.props.image.profile_image;
-        
-
-        const descriptionTextStyle = {
-            color: "#FFF",
-            fontSize: 25,
-            textAlign: "center"
-        }
-
-        const userNameTextStyle = {
-            color: "#FFF",
-            fontSize: 15,
-            textAlign: "center"
-        }
+        const setShowAnimation = this.props.image.setShowAnimation;
         
         return (
-            <View style={styles.contaier}>
-                <Title title={IMAGE_TITLE} fontAwesomeIcon={FONT_AWESOME_ICON} />
+            <View style={styles.container}>
+                <Title 
+                    title={IMAGE_TITLE} 
+                    fontAwesomeIcon={FONT_AWESOME_ICON} 
+                    style={styles.titleStyle}
+                />
                 <Image
                     style={styles.image}
                     source={{uri: this.props.image.url}}
                 />
-                <Text
-                    accessibilityLabel={description}
-                    style= {descriptionTextStyle} >
-                    "{description}"
-                </Text>
-                <Text
-                    accessibilityLabel={userName}
-                    style= {userNameTextStyle} >
-                    - {userName}
-                </Text>
-                <Avatar
-                    size="medium"
-                    rounded
-                    icon={{name: 'user'}}
-                    source={{uri: this.props.image.profile_image}}
-                    activeOpacity={0.7}   
+                <ArtistInfo 
+                    profileImage={profileImage}
+                    description={description}
+                    userName={userName}
                 />
                 <Source source={source} />
             </View>
@@ -73,11 +52,55 @@ export default class ImageScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    
+    container: {
+        flex: 1 ,
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        flexDirection: 'column',
+    },
+
+    titleStyle:{
+        flex: 2,
+    },
+
     image: {
+        flex:3,
         width: Dimensions.get('window').width - 10,
         height: 400,
         alignSelf: 'center',
     },
+
+    avatarAndTextStyle :{
+        flex:1,
+        flexDirection: 'row',
+        alignSelf: "center",
+        justifyContent: "space-between"
+    },
+
+    avatarStyle:{
+        flex:2,
+    },
+
+    descriptionAndNameStyle : {
+        flex:1,
+        flexDirection: 'column',
+    },
+
+    descriptionTextStyle : { 
+        color: "#FFF",
+        fontSize: 25,
+        textAlign: "left"
+    },
+
+    userNameTextStyle : {
+        flex:1,
+        color: "#FFF",
+        fontSize: 15,
+        textAlign: "left"
+    } ,
+    
+
   });
 
 
