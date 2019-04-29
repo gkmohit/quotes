@@ -19,17 +19,16 @@ export default class Joke extends React.Component {
     render() { 
         
         const joke = this.props.joke.joke;
-        const jokeTextStyle = {
-            color: "#FFF",
-            fontSize: 35,
-            textAlign: "center",
-        };
         return (
             <View style={styles.container}>
-                <Title title={JOKE_TITLE} fontAwesomeIcon={FONT_AWESOME_ICON} />
+                <Title 
+                    title={JOKE_TITLE} 
+                    fontAwesomeIcon={FONT_AWESOME_ICON} 
+                    style={styles.jokeTitleStyle}
+                    />
                 <Text
                     accessibilityLabel={joke}
-                    style= {jokeTextStyle} >
+                    style= {styles.jokeTextStyle} >
                     {joke}
                 </Text>
             </View>
@@ -50,6 +49,16 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
+      justifyContent: 'space-around',
       padding: 5
     },
+    jokeTextStyle : {
+        flex: 2,
+        color: "#FFF",
+        fontSize: 35,
+        textAlign: "center",
+    },
+    jokeTitleStyle: {
+        flex: 1,
+    }
   });

@@ -3,7 +3,6 @@ import axios from 'axios';
 import { 
   StyleSheet, 
   TouchableOpacity,
-  Text, 
   ActivityIndicator
  } from 'react-native';
 import Quote from './components/Quote.js';
@@ -23,6 +22,7 @@ export default class App extends React.Component {
       joke:{},
       quote:{},
       image:{},
+      errorMessage: []
     }
     
   }
@@ -128,6 +128,7 @@ export default class App extends React.Component {
           isQuote: false,
           isJoke: false,
           isImage:false,
+          errorMessage: error
         })
         this.setShowAnimation(false);
     });
@@ -157,6 +158,7 @@ export default class App extends React.Component {
           isQuote: false,
           isJoke: false,
           isImage:false,
+          errorMessage: error
         })
         this.setShowAnimation(false);
       });
@@ -193,6 +195,7 @@ export default class App extends React.Component {
           isQuote: false,
           isJoke: false,
           isImage:false,
+          errorMessage: error
         })
         this.setShowAnimation(false);
       });

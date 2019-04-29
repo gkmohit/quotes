@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Title from './Title';
 import Source from './Source';
-import ArtistInfo from './ArtistInfo';
+import PictureInfo from './PictureInfo';
 
 
 const IMAGE_TITLE = "Image";
@@ -40,7 +40,7 @@ export default class ImageScreen extends React.Component {
                     style={styles.image}
                     source={{uri: this.props.image.url}}
                 />
-                <ArtistInfo 
+                <PictureInfo 
                     profileImage={profileImage}
                     description={description}
                     userName={userName}

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
-export default class ArtistInfo extends React.Component {
+export default class PictureInfo extends React.Component {
 
     constructor(props) {
         super(props);
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     },
   });
 
-  ArtistInfo.propTypes = {
+  PictureInfo.propTypes = {
     profileImage : PropTypes.string,
     description: PropTypes.string,
     userName: PropTypes.string

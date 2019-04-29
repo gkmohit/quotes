@@ -14,7 +14,8 @@ export default class ErrorScreen extends React.Component {
         super(props);
     }
     render() { 
-        const error = "Opps there was an error!";
+        const error = this.props.error;
+        console.log("Bro: " + error);
         const errorTextStyle = {
             color: "#FFF",
             fontSize: 35,
@@ -25,7 +26,7 @@ export default class ErrorScreen extends React.Component {
                 <Text
                     accessibilityLabel={error}
                     style= {errorTextStyle} >
-                    {error}
+                    {"Helllo"}
                 </Text>
             </View>
         )
@@ -40,5 +41,5 @@ const styles = StyleSheet.create({
     },
   });
   ErrorScreen.propTypes = {
-    error : PropTypes.object,
+    error : PropTypes.array,
 }
